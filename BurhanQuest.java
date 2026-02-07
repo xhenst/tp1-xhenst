@@ -10,25 +10,25 @@ import java.util.Scanner;
 public class BurhanQuest {
     // Banner pembuka, silakan manfaatkan variabel ini untuk menampilkan banner di awal dan di akhir program
     private static final String BANNER = """
-                █     █░▓█████  ██▓     ▄████▄   ▒█████   ███▄ ▄███▓▓█████                        
-               ▓█░ █ ░█░▓█   ▀ ▓██▒    ▒██▀ ▀█  ▒██▒  ██▒▓██▒▀█▀ ██▒▓█   ▀                        
-               ▒█░ █ ░█ ▒███   ▒██░    ▒▓█    ▄ ▒██░  ██▒▓██    ▓██░▒███                          
-               ░█░ █ ░█ ▒▓█  ▄ ▒██░    ▒▓▓▄ ▄██▒▒██   ██░▒██    ▒██ ▒▓█  ▄                        
-               ░░██▒██▓ ░▒████▒░██████▒▒ ▓███▀ ░░ ████▓▒░▒██▒   ░██▒░▒████▒                       
-               ░ ▓░▒ ▒  ░░ ▒░ ░░ ▒░▓  ░░ ░▒ ▒  ░░ ▒░▒░▒░ ░ ▒░   ░  ░░░ ▒░ ░                       
-                 ▒ ░ ░   ░ ░  ░░ ░ ▒  ░  ░  ▒     ░ ▒ ▒░ ░  ░      ░ ░ ░  ░                       
-                 ░   ░     ░     ░ ░   ░        ░ ░ ░ ▒  ░      ░      ░                          
-                   ░       ░  ░    ░  ░░ ░          ░ ░         ░      ░  ░                       
-                                       ░                                                          
-                                    ▄▄▄█████▓ ▒█████                                              
-                                    ▓  ██▒ ▓▒▒██▒  ██▒                                            
-                                    ▒ ▓██░ ▒░▒██░  ██▒                                            
-                                    ░ ▓██▓ ░ ▒██   ██░                                            
-                                      ▒██▒ ░ ░ ████▓▒░                                            
-                                      ▒ ░░   ░ ▒░▒░▒░                                             
-                                        ░      ░ ▒ ▒░                                             
-                                      ░      ░ ░ ░ ▒                                              
-                                                 ░ ░                                              
+                    █     █░▓█████  ██▓     ▄████▄   ▒█████   ███▄ ▄███▓▓█████                        
+                    ▓█░ █ ░█░▓█   ▀ ▓██▒    ▒██▀ ▀█  ▒██▒  ██▒▓██▒▀█▀ ██▒▓█   ▀                        
+                    ▒█░ █ ░█ ▒███   ▒██░    ▒▓█    ▄ ▒██░  ██▒▓██    ▓██░▒███                          
+                    ░█░ █ ░█ ▒▓█  ▄ ▒██░    ▒▓▓▄ ▄██▒▒██   ██░▒██    ▒██ ▒▓█  ▄                        
+                    ░░██▒██▓ ░▒████▒░██████▒▒ ▓███▀ ░░ ████▓▒░▒██▒   ░██▒░▒████▒                       
+                    ░ ▓░▒ ▒  ░░ ▒░ ░░ ▒░▓  ░░ ░▒ ▒  ░░ ▒░▒░▒░ ░ ▒░   ░  ░░░ ▒░ ░                       
+                        ▒ ░ ░   ░ ░  ░░ ░ ▒  ░  ░  ▒     ░ ▒ ▒░ ░  ░      ░ ░ ░  ░                       
+                        ░   ░     ░     ░ ░   ░         ░ ░ ░ ▒  ░      ░      ░                          
+                        ░       ░  ░    ░  ░░ ░          ░ ░         ░      ░  ░                       
+                                            ░                                                          
+                                        ▄▄▄█████▓ ▒█████                                              
+                                        ▓  ██▒ ▓▒▒██▒  ██▒                                            
+                                        ▒ ▓██░ ▒░▒██░  ██▒                                            
+                                        ░ ▓██▓ ░ ▒██   ██░                                            
+                                        ▒██▒ ░ ░ ████▓▒░                                            
+                                        ▒ ░░   ░ ▒░▒░▒░                                             
+                                            ░      ░ ▒ ▒░                                             
+                                        ░      ░ ░ ░ ▒                                              
+                                                    ░ ░                                              
                                                                                                   
  ▄▄▄▄    █    ██  ██▀███   ██░ ██  ▄▄▄       ███▄    █   █████   █    ██ ▓█████   ██████ ▄▄▄█████▓
 ▓█████▄  ██  ▓██▒▓██ ▒ ██▒▓██░ ██▒▒████▄     ██ ▀█   █ ▒██▓  ██▒ ██  ▓██▒▓█   ▀ ▒██    ▒ ▓  ██▒ ▓▒
@@ -41,8 +41,8 @@ public class BurhanQuest {
  ░         ░        ░      ░  ░  ░      ░  ░         ░     ░       ░        ░  ░      ░           
       ░                                                                                           
             """;
-    private static final String STUDENT_NAME = "";
-    private static final String STUDENT_ID = "";
+    private static final String STUDENT_NAME = "Kayla Alifah Khairunisa";
+    private static final String STUDENT_ID = "2506611931";
 
 
     // Penanda atribut, silakan manfaatkan variabel ini untuk menandai atribut di dalam data
@@ -68,7 +68,6 @@ public class BurhanQuest {
 
     public static void main(String[] args) throws Exception {
         System.out.println(BANNER);
-        System.out.println("Selamat datang di BurhanQuest!");
         System.out.println("Dibuat oleh: " + STUDENT_NAME + " - " + STUDENT_ID);
         System.out.println("Mari kita mulai dengan membuat sejumlah data quest dan pengembara.");
 

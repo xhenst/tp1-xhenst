@@ -7,6 +7,8 @@ Page
 100%
 import java.util.Scanner;
 
+import java.util.Scanner;
+
 public class BurhanQuest {
     // Banner pembuka, silakan manfaatkan variabel ini untuk menampilkan banner di awal dan di akhir program
     private static final String BANNER = """
@@ -72,17 +74,28 @@ public class BurhanQuest {
         System.out.println("Mari kita mulai dengan membuat sejumlah data quest dan pengembara.");
 
         // TODO: Seeding data quest dan pengembara
-        int questCount, travelerCount;
+        int questCount = 0;
+        int travelerCount = 0;
         boolean invalidInput = true;
 
         // TODO: Input banyak quest dan pengembara
         while (invalidInput) {
             System.out.print("Silakan masukkan banyak quest yang ingin didaftarkan: ");
             String questCountInput = input.nextLine();
+            if (questCountInput.matches("\\d+")){
+                questCount = Integer.parseInt(questCountInput);
+                if (questCount >= 0){
+                    invalidInput = false;
+                } else {
+                    System.out.println("Input tidak valid. Harap masukkan bilangan bulat nonnegatif.");
+                }   
+                } else {
+                    System.out.println("Input tidak valid. Harap masukkan bilangan bulat nonnegatif.");
+                }
+}
             // TODO: Validasi input jumlah quest
 
-            System.out.println("Input tidak valid. Harap masukkan bilangan bulat nonnegatif.");
-        }
+            
         
         // TODO: Input jumlah pengembara
         invalidInput = true;
@@ -90,9 +103,17 @@ public class BurhanQuest {
             System.out.print("Silakan masukkan banyak pengembara yang ingin didaftarkan: ");
             String travelerCountInput = input.nextLine();
             // TODO: Validasi input jumlah pengembara
-
-            System.out.println("Input tidak valid. Harap masukkan bilangan bulat nonnegatif.");
-        }
+            if (travelerCountInput.matches("\\d+")){
+                travelerCount = Integer.parseInt(travelerCountInput);
+                if (travelerCount >= 0){
+                    invalidInput = false;
+                } else {
+                    System.out.println("Input tidak valid. Harap masukkan bilangan bulat nonnegatif.");
+                }   
+                } else {
+                    System.out.println("Input tidak valid. Harap masukkan bilangan bulat nonnegatif.");
+                }
+}
         System.out.println();
 
         String questData = "";

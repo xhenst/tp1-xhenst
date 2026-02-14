@@ -112,14 +112,15 @@ public class BurhanQuest {
         // TODO: Input data quest sebanyak quest yang diminta
 
 
-        boolean validInput1 = false;
-        boolean validInput2 = false;
-        boolean validInput3 = false;
-        boolean validInput4 = false;
-        boolean validInput5 = false;
-        String questStatus = "tersedia";
+
 
         for (int i = 0; i < questCount; i++) {
+            boolean validInput1 = false;
+            boolean validInput2 = false;
+            boolean validInput3 = false;
+            boolean validInput4 = false;
+            boolean validInput5 = false;
+            String questStatus = "tersedia";
             System.out.println("Quest " + (i+1));
             //input nama quest
             while (!validInput1){
@@ -128,12 +129,11 @@ public class BurhanQuest {
 
                 if (questName.matches("[a-zA-Z0-9\\s]+")){
                     validInput1 = true;
-                    questData += i + "+" + NAME_IDENTIFIER + questName;
-
+                    questData += questId + "+" + NAME_IDENTIFIER + questName;
+                    questId++;
                 }else{
                     System.out.println("Input tidak valid. Harap masukkan data dengan benar");
                 }}
-            validInput1 = false;
             //input deskripsi quest
             while (!validInput2){
                 System.out.println("Masukkan deskripsi quest: ");
@@ -163,7 +163,6 @@ public class BurhanQuest {
                 }else{
                     System.out.println("Input tidak valid. Harap masukkan data dengan benar");
                 }}     
-            validInput3 = false; 
             //input Exp quest  
             while (!validInput4){
                 System.out.println("Masukkan bonus exp quest berupa bilangan bulat nonnegatid: ");
@@ -180,8 +179,7 @@ public class BurhanQuest {
                     
                 }else{
                     System.out.println("Input tidak valid. Harap masukkan data dengan benar");
-                }}
-            validInput4 = false;    
+                }}   
             //input difficulty quest
             while (!validInput5){
                 System.out.println("Masukkan tingkat kesulitan quest (opsi: mudah, menengah, sulit): ");
@@ -194,22 +192,57 @@ public class BurhanQuest {
                     }else{
                         System.out.println("Input tidak valid. Harap masukkan data dengan benar");
                     }}  
-            validInput5 = false;
             questData += ";" + STATUS_IDENTIFIER + questStatus;
-            System.out.println("Quest berhasil");
-            
-                }  } 
-        }
-/* 
+            System.out.println("Quest berhasil ditambahkan!");
+            }
+
         System.out.println();
 
         System.out.println("Mulai memasukkan data pengembara.");
         // TODO: Input data pengembara sebanyak pengembara yang diminta
+        int travelerExp =0;
         for (int i = 0; i < travelerCount; i++) {
-            
+            boolean validInputPengembara1 = false;
+            boolean validInputPengembara2 = false;
+            while (!validInputPengembara1){
+                System.out.println("Masukkan nama pengembara: ");
+                String travelerName = input.nextLine();
+                if (travelerName.matches("[a-zA-Z0-9\\s]+")){
+                    travelerData += travelerId + "+" + NAME_IDENTIFIER + travelerName; 
+                    validInputPengembara1 = true;
+                    travelerId++;
+                    
+                } else{
+                    System.out.println("Input tidak valid. Harap masukkan data dengan benar.");
+                }
+            }
+            while (!validInputPengembara2){
+                System.out.println("Masukkan level pengembara berupa bilangan bulat [1,20]: ");
+                String travelerLevel = input.nextLine();
+                if (travelerLevel.matches("\\d+")){
+                    int travelerLevelInt = Integer.parseInt(travelerLevel);
+                    if ((travelerLevelInt >= 1)&&(travelerLevelInt<=20)){
+                        travelerData += ";" + LEVEL_IDENTIFIER + travelerLevel;
+                        if(travelerLevelInt > 0){
+                        travelerExp = 5000*2^(travelerLevelInt-2);
+                        validInputPengembara2 = true;
+                    } else{
+                        System.out.println("Input tidak valid. Harap masukkan data dengan benar.");
+                    } 
+                } else{
+                    System.out.println("Input tidak valid. Harap masukkan data dengan benar.");
+                }
+            }
+        
+
+        }
+        System.out.println("Pengembara berhasil ditambahkan");
         }
         System.out.println("Data berhasil dimasukkan.");
         System.out.println();
+    }}
+
+/* 
 
         boolean running = true;
         // TODO: Loop menu utama

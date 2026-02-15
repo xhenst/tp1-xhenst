@@ -201,6 +201,7 @@ public class BurhanQuest {
         System.out.println("Mulai memasukkan data pengembara.");
         // TODO: Input data pengembara sebanyak pengembara yang diminta
         int travelerExp =0;
+        String travelerStatus = "kosong";
         for (int i = 0; i < travelerCount; i++) {
             boolean validInputPengembara1 = false;
             boolean validInputPengembara2 = false;
@@ -225,6 +226,7 @@ public class BurhanQuest {
                         travelerData += ";" + LEVEL_IDENTIFIER + travelerLevel;
                         if(travelerLevelInt > 0){
                         travelerExp = (int)(5000*Math.pow(2, travelerLevelInt-2));
+                        travelerData+= ";" + EXP_IDENTIFIER + travelerExp;
                         validInputPengembara2 = true;
                     } else{
                         System.out.println("Input tidak valid. Harap masukkan data dengan benar.");
@@ -232,6 +234,7 @@ public class BurhanQuest {
                 } else{
                     System.out.println("Input tidak valid. Harap masukkan data dengan benar.");
                 }
+            travelerData += ";" + STATUS_IDENTIFIER + travelerStatus;
             }
         
 
@@ -264,6 +267,7 @@ public class BurhanQuest {
             switch (choice) {
                 case "1":
                     // TODO: Tampilkan daftar quest
+                    System.out.println("Quest yang terdaftar: ");
                     String[] questParts = questData.split(";");
                     for (String item : questParts){
                         if (item.startsWith("Q")){
@@ -276,10 +280,10 @@ public class BurhanQuest {
                             System.out.println("Deskripsi Quest: "+  item.substring(1));
                         }
                         if (item.startsWith("$")){
-                            System.out.println("Reward Quest: " + item.substring(1)+ "koin");
+                            System.out.println("Reward Quest: " + item.substring(1)+ " koin");
                         }
                         if (item.startsWith("#")){
-                            System.out.println("Bonus Exp Quest: " + item.substring(1) + "poin exp");
+                            System.out.println("Bonus Exp Quest: " + item.substring(1) + " poin exp");
                         }
                         if (item.startsWith("^")){
                             if ((item.substring(1)).matches("mudah")){
@@ -292,19 +296,43 @@ public class BurhanQuest {
                         }
                          if (item.startsWith("@")){
                             if ((item.substring(1)).matches("tersedia")){
-                                System.out.println("tersedia \ud83d\udfe2" );
+                                System.out.println("Status Quest: tersedia \ud83d\udfe2" );
                             } else if ((item.substring(1)).matches("diambil")){
-                                System.out.println("diambil \u231b" );
+                                System.out.println("Status Quest: diambil \u231b" );
                             } else if ((item.substring(1)).matches("selesai")){
-                                System.out.println("selesai \ud83c\udfc6" );
+                                System.out.println("Status Quest: selesai \ud83c\udfc6" );
                             }
                         }                       
                     }
-                    System.out.println("Belum diimplementasikan");
                     break;
                 case "2":
                     // TODO: Tampilkan daftar pengembara
-                    System.out.println("Belum diimplementasikan");
+                    System.out.println("Pengembara yang terdaftar: ");
+                    String[] travelerParts = travelerData.split(";");
+                    for (String item : travelerParts){
+                        if (item.startsWith("P")){
+                            System.out.println("ID Pengembara: "+ item.substring(1));
+                        }
+                        if (item.startsWith("!")){
+                            System.out.println("Nama Pengembara: "+  item.substring(1));
+                        }
+                        if (item.startsWith("%")){
+                            System.out.println("Deskripsi Quest: "+  item.substring(1));
+                        }
+                        if (item.startsWith("$")){
+                            System.out.println("Level Pengembara: "+ item.substring(1));
+                        }
+                        if (item.startsWith("#")){
+                            System.out.println("Exp pengembara: " + item.substring(1) + " poin exp");
+                        }
+                        if (item.startsWith("@")){
+                            if ((item.substring(1)).matches("kosong")){
+                                System.out.println("Status Pengembara: kosong \u2705" );
+                            } else if ((item.substring(1)).matches("dalam quest")){
+                                System.out.println("Status pengembara: dalam quest \u274c" );
+                            }
+                        }                       
+                    }
                     break;
                 case "3":
                     // TODO: Tambah quest

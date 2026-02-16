@@ -129,7 +129,7 @@ public class BurhanQuest {
 
                 if (questName.matches("[a-zA-Z0-9\\s]+")){
                     validInput1 = true;
-                    questData += ";"+"Q"+questId + ";" + NAME_IDENTIFIER + questName;
+                    questData += "+"+"Q"+questId + ";" + NAME_IDENTIFIER + questName;
                     questId++;
                 }else{
                     System.out.println("Input tidak valid. Harap masukkan data dengan benar");
@@ -209,7 +209,7 @@ public class BurhanQuest {
                 System.out.println("Masukkan nama pengembara: ");
                 String travelerName = input.nextLine();
                 if (travelerName.matches("[a-zA-Z0-9\\s]+")){
-                    travelerData += ";"+"P"+travelerId + ";" + NAME_IDENTIFIER + travelerName; 
+                    travelerData += "+"+"P"+travelerId + ";" + NAME_IDENTIFIER + travelerName; 
                     validInputPengembara1 = true;
                     travelerId++;
                     
@@ -268,43 +268,32 @@ public class BurhanQuest {
                 case "1":
                     // TODO: Tampilkan daftar quest
                     System.out.println("Quest yang terdaftar: ");
-                    String[] questParts = questData.split(";");
-                    for (String item : questParts){
-                        if (item.startsWith("Q")){
-                            System.out.println("ID Quest: "+ item);
-                        }
-                        if (item.startsWith("!")){
-                            System.out.println("Nama Quest: "+  item.substring(1));
-                        }
-                        if (item.startsWith("%")){
-                            System.out.println("Deskripsi Quest: "+  item.substring(1));
-                        }
-                        if (item.startsWith("$")){
-                            System.out.println("Reward Quest: " + item.substring(1)+ " koin");
-                        }
-                        if (item.startsWith("#")){
-                            System.out.println("Bonus Exp Quest: " + item.substring(1) + " poin exp");
-                        }
-                        if (item.startsWith("^")){
-                            if ((item.substring(1)).matches("mudah")){
-                                System.out.println("Tingkat Kesulitan Quest: \u2605" );
-                            } else if ((item.substring(1)).matches("menengah")){
-                                System.out.println("Tingkat Kesulitan Quest: \u2605\\u2605" );
-                            } else if ((item.substring(1)).matches("sulit")){
-                                System.out.println("Tingkat Kesulitan Quest: \u2605\\u2605\\u2605" );
+                    int start = 0;
+                    for (int i = 0; i < questData.length(); i++){
+                        if (questData.charAt(i)== ';'){
+                            if (questData.charAt(start)=='+'){
+                                System.out.println("Quest id: " + questData.substring(start+1,i));
+                                start = i +1;
+                            } else if (questData.charAt(start)==NAME_IDENTIFIER){
+                                System.out.println("Nama Quest: "+ questData.substring(start+1,i));
+                                start = i +1;
+                            } else if (questData.charAt(start)==DESC_IDENTIFIER){
+                                System.out.println("Deskripsi Quest: "+ questData.substring(start+1,i));
+                                start = i +1;
+                            } else if (questData.charAt(start)==REWARD_IDENTIFIER){
+                                System.out.println("Reward Quest: "+ questData.substring(start+1,i));
+                                start = i +1;
+                            } else if (questData.charAt(start)==EXP_IDENTIFIER){
+                                System.out.println("Bonus Exp Quest: "+ questData.substring(start+1,i));
+                                start = i +1;
+                            } else if (questData.charAt(start)==DIFFICULTY_IDENTIFIER){
+                                System.out.println("Tingkat Kesulitan Quest: "+ questData.substring(start+1,i));
+                                start = i +1;
+                            } else if (questData.charAt(start)==STATUS_IDENTIFIER){
+                                System.out.println("Status Quest: "+ questData.substring(start+1,i));
+                                start = i +1;
                             }
-                        }
-                         if (item.startsWith("@")){
-                            if ((item.substring(1)).matches("tersedia")){
-                                System.out.println("Status Quest: tersedia \ud83d\udfe2" );
-                            } else if ((item.substring(1)).matches("diambil")){
-                                System.out.println("Status Quest: diambil \u231b" );
-                            } else if ((item.substring(1)).matches("selesai")){
-                                System.out.println("Status Quest: selesai \ud83c\udfc6" );
-                            }
-                        }                       
-                    }
-                    break;
+                    }}break;
                 case "2":
                     // TODO: Tampilkan daftar pengembara
                     System.out.println("Pengembara yang terdaftar: ");
@@ -352,7 +341,7 @@ public class BurhanQuest {
                             break;
                         }else{
                         if (questName.matches("[a-zA-Z0-9\\s]+")){
-                            questData += ";"+"Q"+questId + ";" + NAME_IDENTIFIER + questName;
+                            questData += "+"+"Q"+questId + ";" + NAME_IDENTIFIER + questName;
                             validInput1 = true;
                         }else{
                             System.out.println("Input tidak valid. Harap masukkan data dengan benar");
@@ -497,13 +486,15 @@ public class BurhanQuest {
                         } 
                     }
                 }
-}
-        }}}
-    /* 
+
+        
                 case "5":
                     // TODO: Menjalankan quest
                     System.out.println("Belum diimplementasikan");
                     break;
+            }}
+    }}
+/* 
                 case "6":
                     // TODO: Menyelesaikan quest
                     System.out.println("Belum diimplementasikan");

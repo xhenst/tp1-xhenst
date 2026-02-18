@@ -294,7 +294,7 @@ public class coba {
                                 } else if ((questData.substring(start+1,i)).matches("sulit")){
                                     System.out.println("Tingkat Kesulitan Quest: \u2605\u2605\u2605");
                             } start = i +1;
-                            }else if (questData.charAt(start)==STATUS_IDENTIFIER){
+                            } else if (questData.charAt(start)==STATUS_IDENTIFIER){
                                 if ((questData.substring(start+1,i)).matches("tersedia")){
                                    System.out.println("Status Quest: "+ questData.substring(start+1,i)+"\ud83d\udfe2");
                                 }else if ((questData.substring(start+1,i)).matches("diambil")){
@@ -305,7 +305,7 @@ public class coba {
                                 start = i +1;
                             }
                     }
-                }System.out.println(questData);
+                }
                 break;
                 case "2":
                     // TODO: Tampilkan daftar pengembara
@@ -500,10 +500,9 @@ public class coba {
         
                 case "5":
                     // TODO: Menjalankan quest
-
                     while (true) {
 
-                        System.out.println("Masukkan ID Quest yang ingin diambil (atau 'x' untuk kembali): ");
+                        System.out.println("Masukkan ID Quest yang ingin diambil (atau 'x'/'X' untuk kembali): ");
                         String idQInput = input.nextLine().trim().toUpperCase();
 
                         if (idQInput.equalsIgnoreCase("x")) {
@@ -526,7 +525,7 @@ public class coba {
                         // status quest
                         int statusStart = qDataInput.indexOf(STATUS_IDENTIFIER);
                         if (statusStart == -1) {
-                            System.out.println("Format quest salah.");
+                            System.out.println("Quest tidak ditemukan atau sudah diambil/selesai.");
                             continue;
                         }
 
@@ -538,14 +537,14 @@ public class coba {
                         String statusQuest = qDataInput.substring(statusStart + 1, statusEnd);
 
                         if (!statusQuest.equalsIgnoreCase("tersedia")) {
-                            System.out.println("Quest tidak tersedia.");
+                            System.out.println("Quest tidak ditemukan atau sudah diambil/selesai.");
                             continue;
                         }
 
                         // difficulty
                         int diffStart = qDataInput.indexOf(DIFFICULTY_IDENTIFIER);
                         if (diffStart == -1) {
-                            System.out.println("Format quest salah.");
+                            System.out.println("Quest tidak ditemukan atau sudah diambil/selesai.");
                             continue;
                         }
 
@@ -556,7 +555,7 @@ public class coba {
 
                         String difficulty = qDataInput.substring(diffStart + 1, diffEnd);
 
-                        System.out.println("Masukkan ID pengembara (atau 'x' untuk kembali): ");
+                        System.out.println("Masukkan ID pengembara (atau 'x'/'X' untuk kembali): ");
                         String idPInput = input.nextLine().trim().toUpperCase();
 
                         if (idPInput.equalsIgnoreCase("x")) {
@@ -565,7 +564,7 @@ public class coba {
 
                         int pDataStart = travelerData.indexOf("+" + idPInput + ";");
                         if (pDataStart == -1) {
-                            System.out.println("Pengembara tidak ditemukan.");
+                            System.out.println("Pengembara tidak ditemukan atau tidak memenuhi persyaratan untuk mengambil quest");
                             continue;
                         }
 
@@ -579,7 +578,7 @@ public class coba {
                         // level
                         int levelStart = pDataInput.indexOf(LEVEL_IDENTIFIER);
                         if (levelStart == -1) {
-                            System.out.println("Format pengembara salah.");
+                            System.out.println("Pengembara tidak ditemukan atau tidak memenuhi persyaratan untuk mengambil quest");
                             continue;
                         }
 
@@ -595,7 +594,7 @@ public class coba {
                         // status pengembara
                         int statusPStart = pDataInput.indexOf(STATUS_IDENTIFIER);
                         if (statusPStart == -1) {
-                            System.out.println("Format pengembara salah.");
+                            System.out.println("Pengembara tidak ditemukan atau tidak memenuhi persyaratan untuk mengambil quest");
                             continue;
                         }
 
@@ -608,7 +607,7 @@ public class coba {
                                 pDataInput.substring(statusPStart + 1, statusPEnd);
 
                         if (!statusPengembara.equalsIgnoreCase("kosong")) {
-                            System.out.println("Pengembara sedang dalam quest.");
+                            System.out.println("Pengembara dalam quest.");
                             continue;
                         }
 
@@ -625,7 +624,7 @@ public class coba {
                         }
 
                         if (!bolehAmbil) {
-                            System.out.println("Level tidak memenuhi syarat.");
+                            System.out.println("Pengembara tidak memenuhi persyaratan mengambil quest.");
                             continue;
                         }
 
@@ -644,13 +643,108 @@ public class coba {
                         break;
                     }
                     break;
-}}}}
+
     
-/* 
+
                 case "6":
                     // TODO: Menyelesaikan quest
-                    System.out.println("Belum diimplementasikan");
+                    while (true) {
+
+                        System.out.println("Masukkan ID Quest yang ingin diselesaikan (atau 'x' untuk kembali): ");
+                        String idQInput = input.nextLine().trim().toUpperCase();
+
+                        if (idQInput.equalsIgnoreCase("x")) {
+                            break;
+                        }
+
+                        int qDataStart = questData.indexOf("+" + idQInput + ";");
+                        if (qDataStart == -1) {
+                            System.out.println("Quest tidak ditemukan.");
+                            continue;
+                        }
+
+                        int qDataEnd = questData.indexOf("+", qDataStart + 1);
+                        if (qDataEnd == -1) {
+                            qDataEnd = questData.length();
+                        }
+
+                        String qDataInput = questData.substring(qDataStart, qDataEnd);
+
+                        int statusStart = qDataInput.indexOf(STATUS_IDENTIFIER);
+                        int statusEnd = qDataInput.indexOf(';', statusStart + 1);
+                        if (statusEnd == -1) {
+                            statusEnd = qDataInput.length();
+                        }
+                        String statusQuest = qDataInput.substring(statusStart + 1, statusEnd);
+
+                        if (!statusQuest.startsWith("diambil")) {
+                            System.out.println("Quest belum diambil.");
+                            continue;
+                        }
+
+                        int dashIndex = statusQuest.indexOf("-");
+                        String idPengembara = statusQuest.substring(dashIndex + 1).replace("\u231b", "").trim();
+
+                        int rewardStart = qDataInput.indexOf(REWARD_IDENTIFIER);
+                        int rewardEnd = qDataInput.indexOf(';', rewardStart + 1);
+                        if (rewardEnd == -1) {
+                            rewardEnd = qDataInput.length();
+                        }
+                        int rewardExp = Integer.parseInt(qDataInput.substring(rewardStart + 1, rewardEnd));
+
+                        int qLastSemicolon = qDataInput.lastIndexOf(';');
+                        qDataInput = qDataInput.substring(0, qLastSemicolon + 1)+ "selesai\u2705";
+
+                        questData = questData.substring(0, qDataStart)+ qDataInput+ questData.substring(qDataEnd);
+
+                        int pDataStart = travelerData.indexOf("+" + idPengembara + ";");
+                        int pDataEnd = travelerData.indexOf("+", pDataStart + 1);
+                        if (pDataEnd == -1) {
+                            pDataEnd = travelerData.length();
+                        }
+                        String pDataInput = travelerData.substring(pDataStart, pDataEnd);
+
+                        int levelStart = pDataInput.indexOf(LEVEL_IDENTIFIER);
+                        int levelEnd = pDataInput.indexOf(';', levelStart + 1);
+                        if (levelEnd == -1) {
+                            levelEnd = pDataInput.length();
+                        }
+                        int level = Integer.parseInt(pDataInput.substring(levelStart + 1, levelEnd));
+
+                        int expStart = pDataInput.indexOf(EXP_IDENTIFIER);
+                        int expEnd = pDataInput.indexOf(';', expStart + 1);
+                        if (expEnd == -1) {
+                            expEnd = pDataInput.length();
+                        }
+                        int exp = Integer.parseInt(pDataInput.substring(expStart + 1, expEnd));
+                        if (exp > 1310720000) {
+                            exp = 1310720000;
+                        }
+                        exp += rewardExp;
+
+                        int levelUp = 5000 * (int)Math.pow(2, level - 1);
+
+                        if (level < 20 && exp >= levelUp) {
+                            level++;
+                        }
+
+                        if (expEnd == -1) {
+                            expEnd = pDataInput.length();
+                        }
+                        pDataInput = pDataInput.substring(0, expStart + 1) + exp + pDataInput.substring(expEnd);
+                        
+
+                        int pLastSemicolon = pDataInput.lastIndexOf(';');
+                        pDataInput = pDataInput.substring(0, pLastSemicolon + 1)+ "kosong\u2705";
+
+                        travelerData = travelerData.substring(0, pDataStart)+ pDataInput+ travelerData.substring(pDataEnd);
+
+                        System.out.println("Quest berhasil diselesaikan!");
+                        break;
+                    }
                     break;
+                }}}}
+/* 
                 case "7":
                     // TODO: Filter daftar quest
                     System.out.println("Belum diimplementasikan");

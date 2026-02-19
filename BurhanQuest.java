@@ -437,7 +437,7 @@ public class BurhanQuest {
                             if (!validInput5){
                                 break;
                             }
-                    questData += ";" + STATUS_IDENTIFIER + questStatus;
+                    questData += ";" + STATUS_IDENTIFIER + questStatus+';';
                     questId++;
                     System.out.println("Quest berhasil ditambahkan!");
                     break;
@@ -771,7 +771,7 @@ public class BurhanQuest {
                     if (filterChoice.equalsIgnoreCase("x")){
                         break;
                     }else if (filterChoice.equals("1")){
-                        System.out.println("Masukkan status quest yang ingin di dafilter (tersedia/diambil/sekesai");
+                        System.out.println("Masukkan status quest yang ingin di dafilter (tersedia/diambil/selesai)");
                         String questFilterStatus = input.nextLine().trim();
                         if (((questFilterStatus.equalsIgnoreCase("tersedia"))||(questFilterStatus.equalsIgnoreCase("diambil"))||(questFilterStatus.equalsIgnoreCase("selesai")))){
                                 System.err.println("Daftar quest terfilter: "); 
@@ -1156,7 +1156,7 @@ public class BurhanQuest {
                             }
                         }
                         tempData = tempData.substring(0,bestStart) + tempData.substring(bestEnd);
-                    }
+                    }break;
                 }
                 break;
             
@@ -1300,7 +1300,7 @@ public class BurhanQuest {
                         }
 
                         tempData=tempData.substring(0,bestStart)+tempData.substring(bestEnd);
-                    }
+                    }break;
                 }
                 break;
                 case "11":
